@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<div class="font">
-			<h2>Base font</h2>
+			<h2>Base-font</h2>
 			<ul class="font__params">
 				<li>
 					<span>font-family</span>
-					<select v-model="font.baseFont['font-family']">
+					<select v-model="baseFont['font-family']">
 				    <option disabled>font-family</option>
 				    <option>Times New Roman</option>
 				    <option>Arial</option>
@@ -18,29 +18,29 @@
 				</li>
 				<li>
 					<span>font-size</span>
-					<input type="text" v-model="font.baseFont['font-size']">
+					<input type="text" v-model="baseFont['font-size']">
 				</li>
 				<li>
 					<span>font-weight</span>
-					<input type="text" v-model="font.baseFont['font-weight']"> 
+					<input type="text" v-model="baseFont['font-weight']"> 
 				</li>
 				<li>
 					<span>line-height</span>
-					<input type="text" v-model="font.baseFont['line-height']">
+					<input type="text" v-model="baseFont['line-height']">
 				</li>
 				<li>
 					<span>letter-spacing</span>
-					<input type="text" v-model="font.baseFont['letter-spacing']">
+					<input type="text" v-model="baseFont['letter-spacing']">
 				</li>
 			</ul>
 
 		</div>
 		<div class="font">
-			<h2>Base font</h2>
+			<h2>H1</h2>
 			<ul class="font__params">
 				<li>
 					<span>font-family</span>
-					<select v-model="font.h1['font-family']">
+					<select v-model="fonts.h1['font-family']">
 				    <option disabled>font-family</option>
 				    <option>Times New Roman</option>
 				    <option>Arial</option>
@@ -53,38 +53,80 @@
 				</li>
 				<li>
 					<span>font-size</span>
-					<input type="text" v-model="font.h1['font-size']">
+					<input type="text" v-model="fonts.h1['font-size']">
 				</li>
 				<li>
 					<span>font-weight</span>
-					<input type="text" v-model="font.h1['font-weight']"> 
+					<input type="text" v-model="fonts.h1['font-weight']"> 
 				</li>
 				<li>
 					<span>line-height</span>
-					<input type="text" v-model="font.h1['line-height']">
+					<input type="text" v-model="fonts.h1['line-height']">
 				</li>
 				<li>
 					<span>letter-spacing</span>
-					<input type="text" v-model="font.h1['letter-spacing']">
+					<input type="text" v-model="fonts.h1['letter-spacing']">
 				</li>
 			</ul>
-			<div class="preview">
-				<div class="base-font" :style="{
-					'font-family': font.baseFont['font-family'],
-					fontSize: font.baseFont['font-size']  + 'px',
-					'font-weight': font.baseFont.fw,
-					'line-height': font.baseFont.lh + 'em',
-					'letter-spacing': font.baseFont.ls + 'em',
-				}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-				</div>
-				<div class="h1" :style="{
-					'font-family': font.h1['font-family'],
-					fontSize: font.h1['font-size']  + 'px',
-					'font-weight': font.h1['font-weight'],
-					'line-height': font.h1['line-height'] + 'em',
-					'letter-spacing': font.h1['letter-spacing'] + 'em',
-				}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-				</div>
+		</div>
+		<div class="font">
+			<h2>H2</h2>
+			<ul class="font__params">
+				<li>
+					<span>font-family</span>
+					<select v-model="fonts.h2['font-family']">
+				    <option disabled>font-family</option>
+				    <option>Times New Roman</option>
+				    <option>Arial</option>
+				    <option>Calibri</option>
+				    <option>Georgia</option>
+				    <option>Impact</option>
+				    <option>Tahoma</option>
+				    <option>Verdana</option>
+					</select>
+				</li>
+				<li>
+					<span>font-size</span>
+					<input type="text" v-model="fonts.h2['font-size']">
+				</li>
+				<li>
+					<span>font-weight</span>
+					<input type="text" v-model="fonts.h2['font-weight']"> 
+				</li>
+				<li>
+					<span>line-height</span>
+					<input type="text" v-model="fonts.h2['line-height']">
+				</li>
+				<li>
+					<span>letter-spacing</span>
+					<input type="text" v-model="fonts.h2['letter-spacing']">
+				</li>
+			</ul>
+		</div>
+		<div class="preview">
+			<div class="base-font" :style="{
+				'font-family': baseFont['font-family'],
+				fontSize: baseFont['font-size']  + 'px',
+				'font-weight': baseFont['font-weight'],
+				'line-height': baseFont['line-height'] + 'em',
+				'letter-spacing': baseFont['letter-spacing'] + 'em',
+			}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+			</div>
+			<div class="h1" :style="{
+				'font-family': fonts.h1['font-family'],
+				fontSize: fonts.h1['font-size']  + 'px',
+				'font-weight': fonts.h1['font-weight'],
+				'line-height': fonts.h1['line-height'] + 'em',
+				'letter-spacing': fonts.h1['letter-spacing'] + 'em',
+			}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+			</div>
+			<div class="h2" :style="{
+				'font-family': fonts.h2['font-family'],
+				fontSize: fonts.h2['font-size']  + 'px',
+				'font-weight': fonts.h2['font-weight'],
+				'line-height': fonts.h2['line-height'] + 'em',
+				'letter-spacing': fonts.h2['letter-spacing'] + 'em',
+			}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 			</div>
 		</div>
 		<a href="" @click.prevent="printLessConfig">Save data</a>
@@ -95,20 +137,27 @@
 	export default {
 		data() {
 			return {
-				font: {
-					baseFont: {
+				baseFont: {
+					"font-family": "Arial",
+					"font-size": 16,
+					"font-weight": 400,
+					"line-height": 1.2,
+					"letter-spacing": 0
+				},
+				fonts: {
+					h1: {
 						"font-family": "Arial",
-						"font-size": 16,
-						"font-weight": 400,
+						"font-size": 36,
+						"font-weight": 600,
 						"line-height": 1.2,
 						"letter-spacing": 0
 					},
-					h1: {
+					h2: {
 						"font-family": "Arial",
-						"font-size": 16,
-						"font-weight": 400,
-						"line-height": 1.2,
-						"letter-spacing": 0
+						"font-size": 28,
+						"font-weight": 600,
+						"line-height": 1.4,
+						"letter-spacing": .3
 					}
 				}
 			}
@@ -116,22 +165,28 @@
 		methods: {
 			generateLessPart (obj, objName) {
 			  let str = '';
-			  if(objName == "baseFont") {
-			  	for(var key in obj) {
-			    	str += `@base-${key}: ${obj[key]}\n`
-			    };
-			  } else {
-		  		for(var key in obj) {
-			    	str += `${key}: ${obj[key]}\n`
-		  	  };
-		  	  str = `${objName} {\n${str}}`
-			  } 
+	  		for(var key in obj) {
+  				if(key == "font-size" && obj[key] != this.baseFont[key]) {
+  					obj[key] = `${obj[key] / this.baseFont[key]}em`;
+  				}
+	  			for(var baseKey in this.baseFont) {
+	  				if(key == baseKey && obj[key] == this.baseFont[baseKey]) {
+	  					obj[key] = `@base-${baseKey}`;
+	  				}; 
+	  			}
+		    	str += `\t${key}: ${obj[key]};\n`
+	  	  };
+	  	  str = `${objName} {\n${str}}`
 			  return str
 			},
 			printLessConfig () {
 				let result = "";
-		   	for (var obj in this.font) {
-		    	result += this.generateLessPart(this.font[obj], obj);
+				for (var key in this.baseFont) {
+					result += `@base-${key}: ${this.baseFont[key]};\n`;
+				};
+		    result += `\n`
+		   	for (var obj in this.fonts) {
+		    	result += this.generateLessPart(this.fonts[obj], obj);
 		    	result += `\n`
 		  	};
 			  console.log(result)
@@ -142,6 +197,9 @@
 </script>
 
 <style lang="scss"> 
+	body {
+		font-size: 16px;
+	}
 	.font {
 		&__params {
 			list-style-type: none;
